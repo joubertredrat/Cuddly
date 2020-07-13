@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace RedRat\Cuddly\Collection;
 
-use Countable;
-
 use function array_search;
 use function count;
 use function in_array;
 
-class Collection implements Countable
+class Collection implements CollectionCountable
 {
     private array $items;
 
@@ -31,7 +29,7 @@ class Collection implements Countable
 
     public function has($item): bool
     {
-        return in_array($item, $this->items);
+        return in_array($item, $this->items, true);
     }
 
     public function remove($item): bool
