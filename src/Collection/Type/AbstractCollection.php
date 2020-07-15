@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RedRat\Cuddly\Collection\Scalar;
+namespace RedRat\Cuddly\Collection\Type;
 
 use RedRat\Cuddly\Collection\Collection;
 use RedRat\Cuddly\Collection\GeneralCollection;

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RedRat\Cuddly\Collection\Scalar;
+namespace RedRat\Cuddly\Collection\Type\Scalar;
 
-class StringCollection extends AbstractCollection
+use RedRat\Cuddly\Collection\Type\AbstractCollection;
+
+class FloatCollection extends AbstractCollection
 {
-    public function add(string $item, bool $acceptDuplicate = false): bool
+    public function add(float $item, bool $acceptDuplicate = false): bool
     {
         return $this
             ->items
@@ -14,7 +16,7 @@ class StringCollection extends AbstractCollection
         ;
     }
 
-    public function has(string $item): bool
+    public function has(float $item): bool
     {
         return $this
             ->items
@@ -22,7 +24,7 @@ class StringCollection extends AbstractCollection
         ;
     }
 
-    public function remove(string $item): bool
+    public function remove(float $item): bool
     {
         return $this
             ->items

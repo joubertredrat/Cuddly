@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RedRat\Cuddly\Tests\Unit\Collection\Scalar;
+namespace RedRat\Cuddly\Tests\Unit\Collection\Type\Scalar;
 
 use PHPUnit\Framework\TestCase;
-use RedRat\Cuddly\Collection\Scalar\StringCollection;
+use RedRat\Cuddly\Collection\Type\Scalar\StringCollection;
 
 class StringCollectionTest extends TestCase
 {

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RedRat\Cuddly\Collection\Scalar;
+namespace RedRat\Cuddly\Collection\Type\Scalar;
+
+use RedRat\Cuddly\Collection\Type\AbstractCollection;
 
 class IntegerCollection extends AbstractCollection
 {
