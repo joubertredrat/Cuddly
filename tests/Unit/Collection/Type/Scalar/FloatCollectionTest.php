@@ -21,10 +21,13 @@ class FloatCollectionTest extends TestCase
     public function testHas(): void
     {
         $collection = new FloatCollection();
+
+        self::assertFalse($collection->has(10.5));
+        self::assertFalse($collection->has(12.5));
+
         $collection->add(10.5);
 
         self::assertTrue($collection->has(10.5));
-        self::assertFalse($collection->has(12.5));
     }
 
     public function testRemove(): void

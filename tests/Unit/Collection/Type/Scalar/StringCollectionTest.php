@@ -21,10 +21,13 @@ class StringCollectionTest extends TestCase
     public function testHas(): void
     {
         $collection = new StringCollection();
+
+        self::assertFalse($collection->has('foo'));
+        self::assertFalse($collection->has('bar'));
+
         $collection->add('foo');
 
         self::assertTrue($collection->has('foo'));
-        self::assertFalse($collection->has('bar'));
     }
 
     public function testRemove(): void

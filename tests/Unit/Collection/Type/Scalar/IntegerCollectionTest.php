@@ -21,10 +21,13 @@ class IntegerCollectionTest extends TestCase
     public function testHas(): void
     {
         $collection = new IntegerCollection();
+
+        self::assertFalse($collection->has(10));
+        self::assertFalse($collection->has(12));
+
         $collection->add(10);
 
         self::assertTrue($collection->has(10));
-        self::assertFalse($collection->has(12));
     }
 
     public function testRemove(): void
