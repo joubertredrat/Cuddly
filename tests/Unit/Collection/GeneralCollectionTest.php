@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Tests\Unit\Collection;
 
 use PHPUnit\Framework\TestCase;
-use RedRat\Cuddly\Collection\Collection;
+use RedRat\Cuddly\Collection\GeneralCollection;
 
-class CollectionTest extends TestCase
+class GeneralCollectionTest extends TestCase
 {
     public function testAdd(): void
     {
-        $collection = new Collection();
+        $collection = new GeneralCollection();
 
         self::assertTrue($collection->add('foo'));
         self::assertTrue($collection->add('foo', true));
@@ -20,7 +20,7 @@ class CollectionTest extends TestCase
 
     public function testHas(): void
     {
-        $collection = new Collection();
+        $collection = new GeneralCollection();
         $collection->add('foo');
 
         self::assertTrue($collection->has('foo'));
@@ -29,7 +29,7 @@ class CollectionTest extends TestCase
 
     public function testRemove(): void
     {
-        $collection = new Collection();
+        $collection = new GeneralCollection();
         $collection->add('foo');
 
         self::assertTrue($collection->remove('foo'));
@@ -38,7 +38,7 @@ class CollectionTest extends TestCase
 
     public function testClear(): void
     {
-        $collection = new Collection();
+        $collection = new GeneralCollection();
 
         self::assertCount(0, $collection);
 
@@ -54,7 +54,7 @@ class CollectionTest extends TestCase
 
     public function testCount(): void
     {
-        $collection = new Collection();
+        $collection = new GeneralCollection();
 
         self::assertCount(0, $collection);
 
@@ -74,7 +74,7 @@ class CollectionTest extends TestCase
     {
         $arrayExpected = ['foo', 10, 'bar', null, true, 'baz', 12.5, 'qux', ['one', 'two'], 'quux'];
 
-        $collection = new Collection();
+        $collection = new GeneralCollection();
 
         foreach ($arrayExpected as $item) {
             $collection->add($item);

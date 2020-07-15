@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Collection\Scalar;
 
 use RedRat\Cuddly\Collection\Collection;
+use RedRat\Cuddly\Collection\GeneralCollection;
 use RedRat\Cuddly\Collection\CollectionCountable;
 
-abstract class AbstractCollection implements CollectionCountable
+abstract class AbstractCollection implements Collection, CollectionCountable
 {
-    protected Collection $items;
+    protected GeneralCollection $items;
 
     public function __construct()
     {
@@ -18,7 +19,7 @@ abstract class AbstractCollection implements CollectionCountable
 
     public function clear(): void
     {
-        $this->items = new Collection();
+        $this->items = new GeneralCollection();
     }
 
     public function count()
