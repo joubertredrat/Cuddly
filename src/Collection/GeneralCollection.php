@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Collection;
 
 use RedRat\Cuddly\ArrayStore\ArrayEngineInterface;
+use RedRat\Cuddly\ArrayStore\ArrayFixed;
+use RedRat\Cuddly\ArrayStore\ArraySlice;
+
+use function is_int;
 
 class GeneralCollection implements Collection, CollectionCountable
 {
@@ -72,5 +76,18 @@ class GeneralCollection implements Collection, CollectionCountable
             ->arrayEngine
             ->getArray()
         ;
+    }
+
+    public static function create(?int $size = null): self
+    {
+        if (is_int($size)) {
+            return new self(
+                new ArrayFixed($size)
+            );
+        }
+
+        return new self(
+            new ArraySlice()
+        );
     }
 }

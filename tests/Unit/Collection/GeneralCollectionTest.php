@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Tests\Unit\Collection;
 
 use PHPUnit\Framework\TestCase;
+use RedRat\Cuddly\Collection\Collection;
 use RedRat\Cuddly\Collection\GeneralCollection;
 
 class GeneralCollectionTest extends TestCase
@@ -88,5 +89,17 @@ class GeneralCollectionTest extends TestCase
         }
 
         self::assertEquals($arrayExpected, $collection->getList());
+    }
+
+    public function testCreateArrayFixed(): void
+    {
+        $collection = GeneralCollection::create(10);
+        self::assertInstanceOf(Collection::class, $collection);
+    }
+
+    public function testCreateArraySlice(): void
+    {
+        $collection = GeneralCollection::create();
+        self::assertInstanceOf(Collection::class, $collection);
     }
 }
