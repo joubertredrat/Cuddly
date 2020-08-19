@@ -95,11 +95,13 @@ class GeneralCollectionTest extends TestCase
     {
         $collection = GeneralCollection::create(10);
         self::assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(GeneralCollection::class, $collection);
     }
 
     public function testCreateArraySlice(): void
     {
         $collection = GeneralCollection::create();
         self::assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(GeneralCollection::class, $collection);
     }
 }

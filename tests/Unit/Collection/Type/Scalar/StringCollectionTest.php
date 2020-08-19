@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Tests\Unit\Collection\Type\Scalar;
 
 use PHPUnit\Framework\TestCase;
+use RedRat\Cuddly\Collection\Collection;
 use RedRat\Cuddly\Collection\Type\Scalar\StringCollection;
+use RedRat\Cuddly\Tests\Unit\Collection\ArrayEngineHelperTrait;
 
 class StringCollectionTest extends TestCase
 {
+    use ArrayEngineHelperTrait;
+
     public function testAdd(): void
     {
-        $collection = new StringCollection();
+        $collection = new StringCollection(
+            self::getRandomArrayEngine()
+        );
 
         self::assertTrue($collection->add('foo'));
         self::assertTrue($collection->add('foo', true));
@@ -20,7 +26,9 @@ class StringCollectionTest extends TestCase
 
     public function testHas(): void
     {
-        $collection = new StringCollection();
+        $collection = new StringCollection(
+            self::getRandomArrayEngine()
+        );
 
         self::assertFalse($collection->has('foo'));
         self::assertFalse($collection->has('bar'));
@@ -32,32 +40,20 @@ class StringCollectionTest extends TestCase
 
     public function testRemove(): void
     {
-        $collection = new StringCollection();
+        $collection = new StringCollection(
+            self::getRandomArrayEngine()
+        );
         $collection->add('foo');
 
         self::assertTrue($collection->remove('foo'));
         self::assertFalse($collection->remove('foo'));
     }
 
-    public function testClear(): void
-    {
-        $collection = new StringCollection();
-
-        self::assertCount(0, $collection);
-
-        $collection->add('foo');
-        $collection->add('bar');
-
-        self::assertCount(2, $collection);
-
-        $collection->clear();
-
-        self::assertCount(0, $collection);
-    }
-
     public function testCount(): void
     {
-        $collection = new StringCollection();
+        $collection = new StringCollection(
+            self::getRandomArrayEngine()
+        );
 
         self::assertCount(0, $collection);
 
@@ -77,12 +73,28 @@ class StringCollectionTest extends TestCase
     {
         $arrayExpected = ['foo', 'bar', 'baz', 'qux', 'quux'];
 
-        $collection = new StringCollection();
+        $collection = new StringCollection(
+            self::getRandomArrayEngine()
+        );
 
         foreach ($arrayExpected as $item) {
             $collection->add($item);
         }
 
         self::assertEquals($arrayExpected, $collection->getList());
+    }
+
+    public function testCreateArrayFixed(): void
+    {
+        $collection = StringCollection::create(10);
+        self::assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(StringCollection::class, $collection);
+    }
+
+    public function testCreateArraySlice(): void
+    {
+        $collection = StringCollection::create();
+        self::assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(StringCollection::class, $collection);
     }
 }

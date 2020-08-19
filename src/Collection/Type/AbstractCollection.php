@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace RedRat\Cuddly\Collection\Type;
 
+use RedRat\Cuddly\ArrayStore\ArrayEngineInterface;
+use RedRat\Cuddly\ArrayStore\ArrayFixed;
+use RedRat\Cuddly\ArrayStore\ArraySlice;
 use RedRat\Cuddly\Collection\Collection;
 use RedRat\Cuddly\Collection\GeneralCollection;
 use RedRat\Cuddly\Collection\CollectionCountable;
 
+use function is_int;
+
 abstract class AbstractCollection implements Collection, CollectionCountable
 {
-    protected GeneralCollection $items;
+    /**
+     * @var GeneralCollection
+     */
+    protected $items;
 
-    public function __construct()
+    public function __construct(ArrayEngineInterface $arrayEngine)
     {
-        $this->clear();
-    }
-
-    public function clear(): void
-    {
-        $this->items = new GeneralCollection();
+        $this->items = new GeneralCollection($arrayEngine);
     }
 
     public function count()
@@ -36,5 +39,18 @@ abstract class AbstractCollection implements Collection, CollectionCountable
             ->items
             ->getList()
         ;
+    }
+
+    public static function create(?int $size = null): self
+    {
+        if (is_int($size)) {
+            return new static(
+                new ArrayFixed($size)
+            );
+        }
+
+        return new static(
+            new ArraySlice()
+        );
     }
 }
