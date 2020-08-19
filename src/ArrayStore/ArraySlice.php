@@ -56,7 +56,7 @@ class ArraySlice implements ArrayEngineInterface, Countable
 
     public function getArray(): array
     {
-        return array_values((array) $this->arrayStorage);
+        return (array) $this->arrayStorage;
     }
 
     public function count(): int
