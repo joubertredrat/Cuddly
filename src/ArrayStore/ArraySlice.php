@@ -8,6 +8,7 @@ use ArrayObject;
 use Countable;
 
 use function array_search;
+use function array_values;
 use function count;
 use function in_array;
 
@@ -55,7 +56,7 @@ class ArraySlice implements ArrayEngineInterface, Countable
 
     public function getArray(): array
     {
-        return (array) $this->arrayStorage;
+        return array_values((array) $this->arrayStorage);
     }
 
     public function count(): int

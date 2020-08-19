@@ -9,9 +9,13 @@ use RedRat\Cuddly\Collection\GeneralCollection;
 
 class GeneralCollectionTest extends TestCase
 {
+    use ArrayEngineHelperTrait;
+
     public function testAdd(): void
     {
-        $collection = new GeneralCollection();
+        $collection = new GeneralCollection(
+            self::getRandomArrayEngine()
+        );
 
         self::assertTrue($collection->add('foo'));
         self::assertTrue($collection->add('foo', true));
@@ -20,7 +24,9 @@ class GeneralCollectionTest extends TestCase
 
     public function testHas(): void
     {
-        $collection = new GeneralCollection();
+        $collection = new GeneralCollection(
+            self::getRandomArrayEngine()
+        );
         $collection->add('foo');
 
         self::assertTrue($collection->has('foo'));
@@ -29,32 +35,20 @@ class GeneralCollectionTest extends TestCase
 
     public function testRemove(): void
     {
-        $collection = new GeneralCollection();
+        $collection = new GeneralCollection(
+            self::getRandomArrayEngine()
+        );
         $collection->add('foo');
 
         self::assertTrue($collection->remove('foo'));
         self::assertFalse($collection->remove('foo'));
     }
 
-    public function testClear(): void
-    {
-        $collection = new GeneralCollection();
-
-        self::assertCount(0, $collection);
-
-        $collection->add('foo');
-        $collection->add('bar');
-
-        self::assertCount(2, $collection);
-
-        $collection->clear();
-
-        self::assertCount(0, $collection);
-    }
-
     public function testCount(): void
     {
-        $collection = new GeneralCollection();
+        $collection = new GeneralCollection(
+            self::getRandomArrayEngine()
+        );
 
         self::assertCount(0, $collection);
 
@@ -72,9 +66,22 @@ class GeneralCollectionTest extends TestCase
 
     public function testGetList(): void
     {
-        $arrayExpected = ['foo', 10, 'bar', null, true, 'baz', 12.5, 'qux', ['one', 'two'], 'quux'];
+        $arrayExpected = [
+            'foo',
+            10,
+            'bar',
+            null,
+            true,
+            'baz',
+            12.5,
+            'qux',
+            ['one', 'two'],
+            'quux'
+        ];
 
-        $collection = new GeneralCollection();
+        $collection = new GeneralCollection(
+            self::getRandomArrayEngine()
+        );
 
         foreach ($arrayExpected as $item) {
             $collection->add($item);

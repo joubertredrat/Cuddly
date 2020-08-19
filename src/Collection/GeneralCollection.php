@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace RedRat\Cuddly\Collection;
 
-use function array_search;
-use function count;
-use function in_array;
+use RedRat\Cuddly\ArrayStore\ArrayEngineInterface;
 
 class GeneralCollection implements Collection, CollectionCountable
 {
-    private array $items;
+    /**
+     * @var ArrayEngineInterface
+     */
+    private $arrayEngine;
 
-    public function __construct()
+    public function __construct(ArrayEngineInterface $arrayEngine)
     {
-        $this->clear();
+        $this->arrayEngine = $arrayEngine;
     }
 
     public function add($item, bool $acceptDuplicate = false): bool
@@ -23,13 +24,20 @@ class GeneralCollection implements Collection, CollectionCountable
             return false;
         }
 
-        $this->items[] = $item;
+        $this
+            ->arrayEngine
+            ->addElement($item)
+        ;
+
         return true;
     }
 
     public function has($item): bool
     {
-        return in_array($item, $this->items, true);
+        return $this
+            ->arrayEngine
+            ->hasElement($item)
+        ;
     }
 
     public function remove($item): bool
@@ -38,24 +46,31 @@ class GeneralCollection implements Collection, CollectionCountable
             return false;
         }
 
-        $itemKey = array_search($item, $this->items);
-        unset($this->items[$itemKey]);
+        $this
+            ->arrayEngine
+            ->removeElement($item)
+        ;
 
         return true;
     }
 
     public function clear(): void
     {
-        $this->items = [];
     }
 
-    public function count()
+    public function count(): int
     {
-        return count($this->items);
+        return $this
+            ->arrayEngine
+            ->countElements()
+        ;
     }
 
     public function getList(): array
     {
-        return $this->items;
+        return $this
+            ->arrayEngine
+            ->getArray()
+        ;
     }
 }
