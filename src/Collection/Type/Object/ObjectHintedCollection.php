@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace RedRat\Cuddly\Collection\Type\Object;
 
 use RedRat\Cuddly\ArrayStore\ArrayEngineInterface;
-use RedRat\Cuddly\Collection\Type\AbstractCollection;
+use RedRat\Cuddly\ArrayStore\ArrayFixed;
+use RedRat\Cuddly\ArrayStore\ArraySlice;
+use RedRat\Cuddly\Collection\Type\AbstractBaseCollection;
 use RedRat\Cuddly\Exception\Collection\Type\Object\ObjectHintedCollection\ClassNotFoundError;
 use RedRat\Cuddly\Exception\Collection\Type\Object\ObjectHintedCollection\ObjectTypeError;
 
 use function class_exists;
 use function get_class;
 
-class ObjectHintedCollection extends AbstractCollection
+class ObjectHintedCollection extends AbstractBaseCollection
 {
     /**
      * @var string
@@ -59,6 +61,21 @@ class ObjectHintedCollection extends AbstractCollection
             ->items
             ->remove($item)
         ;
+    }
+
+    public static function create(string $className, ?int $size = null): self
+    {
+        if (is_int($size)) {
+            return new self(
+                new ArrayFixed($size),
+                $className
+            );
+        }
+
+        return new self(
+            new ArraySlice(),
+            $className
+        );
     }
 
     private function checkTypeHint(object $item, string $methodCalled): void

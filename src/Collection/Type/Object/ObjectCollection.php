@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace RedRat\Cuddly\Collection\Type\Object;
 
-use RedRat\Cuddly\Collection\Type\AbstractCollection;
+use RedRat\Cuddly\Collection\Type\AbstractObjectCollection;
 
-class ObjectCollection extends AbstractCollection
+class ObjectCollection extends AbstractObjectCollection
 {
     public function add(object $item, bool $acceptDuplicate = false): bool
     {

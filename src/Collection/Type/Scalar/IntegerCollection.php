@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace RedRat\Cuddly\Collection\Type\Scalar;
 
-use RedRat\Cuddly\Collection\Type\AbstractCollection;
+use RedRat\Cuddly\Collection\Type\AbstractScalarCollection;
 
-class IntegerCollection extends AbstractCollection
+class IntegerCollection extends AbstractScalarCollection
 {
     public function add(int $item, bool $acceptDuplicate = false): bool
     {
