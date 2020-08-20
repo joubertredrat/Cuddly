@@ -1,0 +1,33 @@
+sudo: false
+
+language: php
+
+php:
+  - "7.4"
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+env:
+  global:
+    - COMPOSER_ARGS="--dev"
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - composer self-update
+  - composer install --no-interaction --no-suggest --no-progress
+
+script:
+  - composer run psr12
+  - composer run tests
+  - composer run coverage
+
+after_script:
+  - mkdir -p build/logs
+  - cp tests/_reports/unit/logs/clover.xml build/logs/clover.xml
+  - cp tests/_reports/unit/logs/clover.xml .
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build -t clover --exit-code $TRAVIS_TEST_RESULT; fi
+  - bash <(curl -s https://codecov.io/bash)
