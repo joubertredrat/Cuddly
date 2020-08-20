@@ -58,10 +58,6 @@ class GeneralCollection implements Collection, CollectionCountable
         return true;
     }
 
-    public function clear(): void
-    {
-    }
-
     public function count(): int
     {
         return $this
