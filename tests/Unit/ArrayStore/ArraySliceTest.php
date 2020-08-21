@@ -56,6 +56,7 @@ class ArraySliceTest extends TestCase
         $arraySlice->removeElement('foo');
 
         self::assertFalse($arraySlice->hasElement('foo'));
+        self::assertFalse($arraySlice->hasElement('bar'));
     }
 
     public function testCountElements(): void
