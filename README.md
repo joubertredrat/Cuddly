@@ -7,6 +7,7 @@
 [![Latest Stable Version](https://poser.pugx.org/redrat/cuddly/v)](https://packagist.org/packages/redrat/cuddly)
 [![Total Downloads](https://poser.pugx.org/redrat/cuddly/downloads)](https://packagist.org/packages/redrat/cuddly)
 [![License](https://poser.pugx.org/redrat/cuddly/license)](https://packagist.org/packages/redrat/cuddly)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fjoubertredrat%2FCuddly.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fjoubertredrat%2FCuddly?ref=badge_shield)
 
 Cuddly is an easy way to provide open or fixed collections for general, scalar or object hinted purposes. Inspired in arrays and slices in golang.
 
@@ -27,3 +28,5 @@ See usage and other documentation in [usage.md](usage.md).
 ### License
 
 The cute and amazing [MIT](https://github.com/joubertredrat/Cuddly/blob/master/LICENSE).
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fjoubertredrat%2FCuddly.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fjoubertredrat%2FCuddly?ref=badge_large)
